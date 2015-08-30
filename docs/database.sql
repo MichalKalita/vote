@@ -21,12 +21,27 @@ CREATE TABLE `item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+DROP TABLE IF EXISTS `project`;
+CREATE TABLE `project` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `author` int(11) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `text` tinytext NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `author` (`author`),
+  CONSTRAINT `project_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 DROP TABLE IF EXISTS `topic`;
 CREATE TABLE `topic` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `project` int(10) unsigned NOT NULL,
   `name` varchar(100) NOT NULL,
   `active_users` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `project` (`project`),
+  CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -48,15 +63,15 @@ CREATE TABLE `vote` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` int(10) unsigned NOT NULL,
   `vote` int(11) NOT NULL COMMENT 'type of vote',
-  `ip` varchar(39) NOT NULL,
+  `points` float NOT NULL,
+  `ip` varchar(39) DEFAULT NULL,
   `user` int(11) unsigned DEFAULT NULL,
   `time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `item` (`item`),
+  UNIQUE KEY `item_ip` (`item`,`ip`),
   KEY `user` (`user`),
   CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`item`) REFERENCES `item` (`id`) ON DELETE CASCADE,
   CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- 2015-08-30 10:19:41
