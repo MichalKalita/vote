@@ -7,8 +7,9 @@ Installing
 The best way to install is using Composer. If you don't have Composer yet, download
 it following [the instructions](http://doc.nette.org/composer). Then use command:
 
-		composer install
-		cd my-app
+		composer require myiyk/vote vote
+		cd vote
+		chmod 777 temp log
 
 Make directories `temp` and `log` writable. Navigate your browser
 to the `www` directory and you will see a welcome page. PHP 5.4 allows
