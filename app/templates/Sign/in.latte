@@ -1,0 +1,18 @@
+{block content}
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="jumbotron">
+			{if !$user->isLoggedIn()}
+				<p class="text-center">{_sign.login_form_title}</p>
+				{control signInForm}
+			{else}
+				<p>{_admin.login_as, ['name' => $user->identity->data['name']]}</p>
+				<p n:if="$user->isInRole('admin')">{_admin.sign.u_are_admin}</p>
+				<p n:if="$user->isInRole('editor')">{_admin.sign.u_are_editor}</p>
+				<p><a n:href="Sign:out" class="btn btn-lg btn-danger">{_admin.logout}</a></p>
+			{/if}
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+

@@ -1,0 +1,36 @@
+{
+	"name": "myiyk/vote",
+	"description": "Portal for vote",
+	"homepage": "http://vote.lydragos.org",
+	"type": "project",
+	"license": [
+		"Unlicense"
+	],
+	"authors": [
+		{
+			"name": "Michal Kalita",
+			"homepage": "http://michal.kalita.cz"
+		}
+	],
+	"require": {
+		"php": ">= 5.4.0",
+		"nette/application": "~2.3.0",
+		"nette/bootstrap": "~2.3.0",
+		"nette/caching": "~2.3.0",
+		"nette/database": "~2.3.0",
+		"nette/di": "~2.3.0",
+		"nette/forms": "~2.3.0",
+		"nette/http": "~2.3.0",
+		"nette/robot-loader": "~2.3.0",
+		"nette/security": "~2.3.0",
+		"nette/utils": "~2.3.0",
+		"latte/latte": "~2.3.0",
+		"tracy/tracy": "~2.3.0",
+		"kdyby/translation": "~2.0",
+		"nextras/secured-links": "*"
+	},
+	"require-dev": {
+		"nette/tester": "~1.0"
+	},
+	"minimum-stability": "stable"
+}

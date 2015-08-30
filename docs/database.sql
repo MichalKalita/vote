@@ -1,0 +1,62 @@
+-- Adminer 4.2.2 MySQL dump
+
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+DROP TABLE IF EXISTS `item`;
+CREATE TABLE `item` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `topic` int(10) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `count_vote_want` int(10) unsigned NOT NULL,
+  `count_vote_nice` int(10) unsigned NOT NULL,
+  `count_vote_normal` int(10) unsigned NOT NULL,
+  `count_vote_bad` int(10) unsigned NOT NULL,
+  `completed` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `topic` (`topic`),
+  CONSTRAINT `item_ibfk_1` FOREIGN KEY (`topic`) REFERENCES `topic` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `topic`;
+CREATE TABLE `topic` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `active_users` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `password` char(60) NOT NULL,
+  `roles` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `jmeno` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `user` (`id`, `name`, `password`, `roles`) VALUES
+  (1,	'admin',	'$2y$10$I4oR4FGej2VPmIL7jXiOv.NtZ3ZUxdhXBZ2bi9chrjiTisE2love.',	'admin');
+
+DROP TABLE IF EXISTS `vote`;
+CREATE TABLE `vote` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `item` int(10) unsigned NOT NULL,
+  `vote` int(11) NOT NULL COMMENT 'type of vote',
+  `ip` varchar(39) NOT NULL,
+  `user` int(11) unsigned DEFAULT NULL,
+  `time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `item` (`item`),
+  KEY `user` (`user`),
+  CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`item`) REFERENCES `item` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- 2015-08-30 10:19:41

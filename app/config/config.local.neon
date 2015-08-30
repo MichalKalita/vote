@@ -1,0 +1,10 @@
+parameters:
+
+
+nette:
+	database:
+		dsn: 'mysql:host=127.0.0.1;dbname=vote'
+		user: 'root'
+		password: 'password'
+		options:
+			lazy: yes

@@ -1,0 +1,15 @@
+edit: "Edit"
+delete: "Delete"
+no_data: "No data"
+used_pictures: "Actually used pictures"
+deleted: "Deleted"
+cannot_delete: "Can not delete"
+action: "Action"
+id: "ID"
+actually_images: "Actually used images"
+
+error_with_message: "Action failed, error: %message%"
+
+user:
+	added: "User added"
+	edited: "User edited"

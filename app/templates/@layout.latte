@@ -1,0 +1,71 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+*}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title n:inner-snippet="title">{ifset #title}{include title|striptags}{_main.title_separator}{/ifset}{_main.site_name}</title>
+
+	<meta name="viewport" content="width=device-width, user-scalable=yes">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{$basePath}/css/screen.css">
+
+	{block head}{/block}
+</head>
+
+<body>
+{include analytics.latte}
+{* Fork me on github banner *}
+<a href="https://github.com/myiyk/vote" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png"></a>
+
+{*<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>*}
+<div class="container">
+	<div class="row" id="navbar-wrap">
+		<div class="col-sm-12">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+						        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" n:href="Homepage:default">{_main.site_name}</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li n:class="$presenter->isLinkCurrent('Sign:in') ? active"><a n:href="Sign:in">{_sign.login}</a></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+		</div>
+	</div>
+
+	{include content}
+</div>
+<footer class="footer">
+	<div class="container">
+		<p class="text-muted"><a href="https://github.com/myiyk/vote" target="_blank">Fork me on GitHub</a></p>
+	</div>
+</footer>
+
+{block scripts}
+	<script src="{$basePath}/js/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="{$basePath}/js/netteForms.js"></script>
+	<script src="{$basePath}/js/main.js?v=4"></script>
+{/block}
+</body>
+</html>

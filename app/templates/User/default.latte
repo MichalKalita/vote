@@ -1,0 +1,64 @@
+{block content}
+<div class="container">
+	<div class="row"> {* řáde s tlačítkem pro přepnutí aktuální/historie a vyhledávání *}
+		<div class="col-md-12">
+			<a n:href="add, backlink => $presenter->storeRequest()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Přidat uživatele</a>
+		</div>
+	</div>
+
+	{if $data} {* jsou-li nalezeny data, vypíšou se + stránkování *}
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered table-hover space-top">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Jméno</th>
+						<th>Oprávnění</th>
+						<th>Akce</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr n:foreach="$data as $n">
+						<td>{$n->id}</td>
+						<td>{$n->name}</td>
+						<td>{isset($opravneni[$n->roles]) ? $opravneni[$n->roles] : $n->roles}</td>
+						<td>
+							<a n:href="edit $n->id, backlink => $presenter->storeRequest()" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-wrench"></span> Upravit</a>
+							<a n:href="delete $n->id, backlink => $presenter->storeRequest()" class="btn btn-danger btn-sm confirm"><span class="glyphicon glyphicon-trash"></span> Odstranit</a>
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<div class="row">
+			<div class="col-md-9 col-sm-12">
+				{if $paginator->getPageCount() >= 2} {* zobrazí stránkování pouze, pokud jsou alespoň 2 strany *}
+					{includeblock '../paginator.latte', paginator => $paginator} {* Vykreslení stránkování z externí šablony *}
+				{/if}
+			</div>
+			<div class="col-md-3 col-sm-12">
+				<p class="text-right">
+					{var $pocet = $paginator->getItemCount()} {* počet položek *}
+					{if $pocet <=0}
+						Žádní uživatelé
+					{elseif $pocet == 1}
+						Nalezen 1 uživatel
+					{elseif $pocet <= 4}
+						Nalezeni {$paginator->getItemCount()} uživatelé
+					{else}
+						Nalezeno {$paginator->getItemCount()} uživatelů
+					{/if}
+				</p>
+			</div>
+		</div>
+	{else}
+		<div class="col-md-12 jumbotron space-top">
+			<h1 class="text-center">Uživatelé nenalezeni</h1>
+			<p class="text-center">V databáze nejsou uloženi žádní uživatelé.</p>
+		</div>
+	{/if}
+
+</div>
+

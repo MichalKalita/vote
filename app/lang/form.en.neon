@@ -1,0 +1,10 @@
+required: "This field is required, please fill it"
+integer: "Enter integer"
+float: "Enter number"
+range: "Number must to be in range form %d to %d"
+min: "Minimal enabled value is %d"
+url: "Please enter valid URL address"
+img: "File must be JPEG, PNG or GIF"
+select_any: "Choose one of options"
+
+save: "Save"
