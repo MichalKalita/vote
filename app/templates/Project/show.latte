@@ -1,12 +1,28 @@
 {block content}
 
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-sm-6">
 		<h1>{_project.project} {$project->name}</h1>
 		{if $presenter->canEdit($project->id)}
 			<a n:href="Project:edit $project->id">{_project.edit}</a>
 			<a n:href="Project:delete $project->id">{_project.delete}</a>
 		{/if}
 		<p>{$project->text}</p>
+	</div>
+	<div class="col-sm-6">
+		<h2>Surveys</h2>
+		{if $presenter->canEdit($project->id)}
+			<a n:href="Survey:add $project->id">{_survey.add}</a>
+		{/if}
+
+		<ul n:if="$surveys">
+			{foreach $surveys as $survey}
+				<li>
+					<a n:href="Survey:show $survey->id">
+						{$survey->name}
+					</a>
+				</li>
+			{/foreach}
+		</ul>
 	</div>
 </div>

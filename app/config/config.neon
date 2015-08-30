@@ -28,6 +28,7 @@ services:
 	- Nette\Caching\Cache
 
 	- App\Model\Project
+	- App\Model\Survey
 	- App\Model\UserManager
 	- App\Model\Vote
 

@@ -5,6 +5,7 @@ namespace App\Presenters;
 use App\BaseForm;
 use App\Form\IDeleteFormFactory;
 use App\Model\Project;
+use App\Model\Survey;
 use Nette\Application\UI\Form;
 
 
@@ -16,6 +17,9 @@ class ProjectPresenter extends BasePresenter
 
 	/** @var Project @inject */
 	public $project;
+
+	/** @var Survey @inject */
+	public $survey;
 
 	/** @var IDeleteFormFactory @inject */
 	public $deleteFormFactory;
@@ -37,6 +41,7 @@ class ProjectPresenter extends BasePresenter
 		}
 
 		$this->template->project = $project;
+		$this->template->surveys = $this->survey->getFromProject($id);
 	}
 
 	public function actionAdd()

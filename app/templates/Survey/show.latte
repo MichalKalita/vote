@@ -1,0 +1,13 @@
+{block content}
+
+<div class="row">
+	<div class="col-sm-12">
+		<h1>{_survey.survey} {$survey->name}</h1>
+		<h2><a n:href="Project:show $project->id">{_project.project} {$project->name}</a></h2>
+		{if $presenter->canEditSurvey($survey->id)}
+			<a n:href="Survey:edit $survey->id">{_survey.edit}</a>
+			<a n:href="Survey:delete $survey->id">{_survey.delete}</a>
+		{/if}
+		<p>{$project->text}</p>
+	</div>
+</div>

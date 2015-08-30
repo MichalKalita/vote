@@ -25,6 +25,7 @@ class DeleteForm extends BaseForm
 		$this->addHidden('id');
 
 		$this->addText('delete', 'main.write_delete')
+			->setAttribute('autocomplete', 'off')
 			->addRule(self::EQUAL, 'form.equal', $translator->translate('main.write_delete_text'));
 
 		$this->addSubmit('submit', 'main.delete');

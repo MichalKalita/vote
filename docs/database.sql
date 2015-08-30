@@ -8,7 +8,7 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `topic` int(10) unsigned NOT NULL,
+  `survey` int(10) unsigned NOT NULL,
   `name` varchar(100) NOT NULL,
   `count_vote_want` int(10) unsigned NOT NULL,
   `count_vote_nice` int(10) unsigned NOT NULL,
@@ -16,8 +16,8 @@ CREATE TABLE `item` (
   `count_vote_bad` int(10) unsigned NOT NULL,
   `completed` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `topic` (`topic`),
-  CONSTRAINT `item_ibfk_1` FOREIGN KEY (`topic`) REFERENCES `topic` (`id`)
+  KEY `survey` (`survey`),
+  CONSTRAINT `item_ibfk_1` FOREIGN KEY (`survey`) REFERENCES `survey` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -33,15 +33,14 @@ CREATE TABLE `project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `topic`;
-CREATE TABLE `topic` (
+DROP TABLE IF EXISTS `survey`;
+CREATE TABLE `survey` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `project` int(10) unsigned NOT NULL,
   `name` varchar(100) NOT NULL,
-  `active_users` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`),
-  CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`)
+  CONSTRAINT `survey_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -73,5 +72,3 @@ CREATE TABLE `vote` (
   CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`item`) REFERENCES `item` (`id`) ON DELETE CASCADE,
   CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 2015-08-30 10:19:41
