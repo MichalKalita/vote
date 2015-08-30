@@ -1,10 +1,10 @@
 {
 	"name": "myiyk/vote",
 	"description": "Portal for vote",
-	"homepage": "http://vote.lydragos.org",
+	"homepage": "http://vote.lydragos.cz",
 	"type": "project",
 	"license": [
-		"Unlicense"
+		"GPLv3"
 	],
 	"authors": [
 		{
