@@ -1,0 +1,19 @@
+{block content}
+
+<div class="row">
+	<div class="col-sm-12">
+		<h1>List of Projects</h1>
+
+		<a n:href="add">Add project (require login)</a>
+
+		<ul n:if="$projects">
+			{foreach $projects as $project}
+				<li>
+					<a n:href="Project:show $project->id">
+						{$project->name}
+					</a>
+				</li>
+			{/foreach}
+		</ul>
+	</div>
+</div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AdminModule\Model;
+namespace App\Model;
 
 use \Nette,
 	\Nette\Security\Passwords,

@@ -6,5 +6,7 @@ min: "Minimal enabled value is %d"
 url: "Please enter valid URL address"
 img: "File must be JPEG, PNG or GIF"
 select_any: "Choose one of options"
+max_length: "Maximal length is %d chars"
+equal: "Please, fill '%s'"
 
 save: "Save"

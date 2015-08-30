@@ -1,0 +1,12 @@
+{block content}
+
+<div class="row">
+	<div class="col-sm-12">
+		<h1>{_project.project} {$project->name}</h1>
+		{if $presenter->canEdit($project->id)}
+			<a n:href="Project:edit $project->id">{_project.edit}</a>
+			<a n:href="Project:delete $project->id">{_project.delete}</a>
+		{/if}
+		<p>{$project->text}</p>
+	</div>
+</div>

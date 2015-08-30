@@ -35,4 +35,10 @@ abstract class BasePresenter extends Presenter
 		}
 	}
 
+	public function requireLogin(){
+		if(!$this->user->isLoggedIn()) {
+			$this->flashMessage($this->translator->translate('main.action_require_login'), 'warning');
+			$this->redirect('Sign:in', ['backlink' => $this->storeRequest()]);
+		}
+	}
 }

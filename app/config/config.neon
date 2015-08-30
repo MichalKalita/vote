@@ -26,8 +26,13 @@ services:
 
 	- App\RouterFactory
 	- Nette\Caching\Cache
-	- App\AdminModule\Model\UserManager
-	- App\FrontModule\Model\Vote
+
+	- App\Model\Project
+	- App\Model\UserManager
+	- App\Model\Vote
+
+	- App\Form\IDeleteFormFactory
+
 	router: @App\RouterFactory::createRouter
 
 extensions:

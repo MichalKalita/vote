@@ -22,7 +22,6 @@
 {* Fork me on github banner *}
 <a href="https://github.com/myiyk/vote" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png"></a>
 
-{*<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>*}
 <div class="container">
 	<div class="row" id="navbar-wrap">
 		<div class="col-sm-12">
@@ -42,8 +41,19 @@
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li n:class="$presenter->isLinkCurrent('Project:') ? active"><a n:href="Project:">{_project.project}</a></li>
+						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li n:class="$presenter->isLinkCurrent('Sign:in') ? active"><a n:href="Sign:in">{_sign.login}</a></li>
+							{if $user->isLoggedIn()}
+								<li n:class="$presenter->isLinkCurrent('User:edit') ? active"><a
+											n:href="User:edit $user->id">{_sign.login_as, ['name' => $user->identity->name]}</a></li>
+								<li n:class="$presenter->isLinkCurrent('Sign:out') ? active"><a
+											n:href="Sign:out">{_sign.logout}</a></li>
+							{else}
+								<li n:class="$presenter->isLinkCurrent('Sign:in') ? active"><a
+											n:href="Sign:in">{_sign.login}</a></li>
+							{/if}
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -52,6 +62,9 @@
 			</nav>
 		</div>
 	</div>
+
+	<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type=='error'?'danger':$flash->type}">{$flash->message}</div>
+
 
 	{include content}
 </div>

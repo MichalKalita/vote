@@ -1,2 +1,6 @@
 site_name: "Vote portal"
 title_separator: " | "
+action_require_login: "This action require login"
+write_delete: "Write 'delete'"
+write_delete_text: "delete"
+delete: "Delete"

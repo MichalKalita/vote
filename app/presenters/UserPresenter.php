@@ -2,7 +2,7 @@
 
 namespace App\Presenters;
 
-use App\AdminModule\Model\UserManager;
+use App\Model\UserManager;
 use App\BaseForm;
 use Nette\Application\UI\Form;
 use Nette\Utils\Paginator;
